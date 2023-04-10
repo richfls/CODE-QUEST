@@ -1,8 +1,9 @@
 import sys
-
-
+import math
 cases = int(sys.stdin.readline().rstrip())
-def eastersunday(y):
+
+def eastersunday(year):
+    y = year
     a = y%19
     b = y%4
     c = y%7
@@ -16,15 +17,19 @@ def eastersunday(y):
     f = (11*m +11)%30
     date = 22+d+e
     if date <=31:
+        month = "03"
+    elif date > 31:
+        date -= 31
         month = "04"
-        return (year,"/",month,"/",date)
-    else:
-        date-=31
-        month = "05"
         if date == 25 and d == 28 and 3 == 6 and f < 19:
             date = 18
-            return (year,"/",month,"/",date)
+        elif date == 26 and d == 29 and e == 6:
+            date = 19
+        else:
+            if date <=9:
+                date = '0' + str(date)
+    print(f"{year}/{month}/{date}")
         
 for num_cases in range(cases):
     year = int(sys.stdin.readline().rstrip())
-    print(eastersunday(year))
+    eastersunday(year)

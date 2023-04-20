@@ -16,19 +16,22 @@ def eastersunday(year):
     e = (2*b+4*c+6*d+n)%7
     f = (11*m +11)%30
     date = 22+d+e
+    
     if date <=31:
-        month = "03"
-    elif date > 31:
+        month = 3
+    else:
         date -= 31
-        month = "04"
-        if date == 25 and d == 28 and 3 == 6 and f < 19:
-            date = 18
-        elif date == 26 and d == 29 and e == 6:
-            date = 19
-        else:
-            if date <=9:
-                date = '0' + str(date)
-    print(f"{year}/{month}/{date}")
+        month = 4
+        
+    if month == 4 and date == 25 and d == 28 and e == 6 and f < 19:
+        date = 18
+    elif month == 4 and date == 26 and d == 29 and e == 6:
+        date = 19
+    
+    if date >9:
+        print(f"{year}/0{month}/{date}")
+    else:
+        print(f"{year}/0{month}/0{date}")
         
 for num_cases in range(cases):
     year = int(sys.stdin.readline().rstrip())
